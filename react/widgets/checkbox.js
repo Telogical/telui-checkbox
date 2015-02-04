@@ -1,8 +1,3 @@
-// TODO. Encapsulate a checkboxlist!!
-// value can be an object.
-
-var React = require('react/addons');
-
 function Checkbox(ui) {
   'use strict';
 
