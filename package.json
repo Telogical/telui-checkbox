@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/Telogical/telui-checkbox/issues"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@telogical/telui-core": "1.x.x"
   },
   "homepage": "https://github.com/Telogical/telui-checkbox"

@@ -1,7 +1,8 @@
-var TelogicalUi = angular.module('TelUI');
+
 var UI = require('../react/telui');
 
-TelogicalUi
+angular
+  .module('TelUI')
   .directive('teluiCheckbox', function reactCheckboxDirective() {
     'use strict';
 
@@ -38,7 +39,6 @@ TelogicalUi
         };
 
         model.key = model.id;
-        React.renderComponent(UI.Checkbox(model), $el[0]);
       }
 
       scope
