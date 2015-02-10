@@ -28,7 +28,6 @@ function Checkbox(ui) {
           scope.value = !value;
         }
 
-
       });
     },
     getInitialState: function getInitialState() {
@@ -76,10 +75,8 @@ function Checkbox(ui) {
           className: cx(checkboxLiClasses)
         };
 
-
       var checkboxInputClasses = {
-          'ui-helper-hidden-accessible': true,
-          //'ui-checkbox-input-debug': true
+          'ui-helper-hidden-accessible': true
         },
         checkboxInputAttrs = {
           id: id + '_input',
@@ -118,10 +115,9 @@ function Checkbox(ui) {
         uiState: this.props.uiState
       };
 
-      var appearance = ui.Appearances[this.props.appearance](appearanceModel);
-      var input = React.DOM.input(checkboxInputAttrs, '');
-      var li = React.DOM.li(checkboxLiAttrs, input, appearance);
-
+      var appearance = ui.Appearances[this.props.appearance](appearanceModel),
+        input = React.DOM.input(checkboxInputAttrs, ''),
+        li = React.DOM.li(checkboxLiAttrs, input, appearance);
 
       return li;
     }

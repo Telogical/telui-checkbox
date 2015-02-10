@@ -1,4 +1,3 @@
-
 var UI = require('../react/telui');
 
 angular
@@ -39,6 +38,8 @@ angular
         };
 
         model.key = model.id;
+
+        React.renderComponent(UI.Checkbox(model), $el[0]);
       }
 
       scope
