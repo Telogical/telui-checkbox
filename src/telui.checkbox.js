@@ -1,4 +1,5 @@
-var UI = require('../react/telui');
+var UI = require('../react/telui'),
+  React = UI.Core.React;
 
 angular
   .module('TelUI')

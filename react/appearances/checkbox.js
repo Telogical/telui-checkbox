@@ -1,6 +1,9 @@
 function AppearanceCheckbox(ui) {
   'use strict';
-
+  
+      var React = ui.Core.React,
+    _ = ui.Core._;
+  
   return React.createClass({
     displayName: 'Appearance.checkbox',
     mixins: [ui.Mixins.Appearance],

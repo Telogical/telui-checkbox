@@ -1,6 +1,9 @@
 function Checkbox(ui) {
   'use strict';
-
+  
+      var React = ui.Core.React,
+    _ = ui.Core._;
+  
   return React.createClass({
     displayName: 'Checkbox',
     mixins: [ui.Mixins.Widget],
