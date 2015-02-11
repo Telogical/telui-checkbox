@@ -1,6 +1,6 @@
 {
   "name": "@telogical/telui-checkbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Checkbox related components in the telui component system",
   "main": "index.js",
   "scripts": {
