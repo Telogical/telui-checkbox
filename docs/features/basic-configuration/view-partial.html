@@ -1,0 +1,35 @@
+<div data-ng-id="basic_configuration" class="waffles ui-view-basic-configuration">
+    <div class="w-12 w-alpha w-omega">
+        <div class="w-12 w-alpha w-omega">
+            #{{people.length}}
+        </div>
+        <div class="w-12 w-alpha w-omega">
+            <telui-combobox
+                            data="people"
+                            label="People"
+                            value="selectedPerson"
+                            label-prop="<%= name.last %>, <%= name.first %>">
+            </telui-combobox>
+        </div>
+        <div class="w-12 w-alpha w-omega">
+          <div class="w-6 w-alpha w-v-4">
+              <telui-checkbox-list
+                              data="people"
+                              label="People Selector Checkboxlist"
+                              value="checkboxlistValue"
+                              label-primary="input list"
+                              label-secondary="output list"
+                              label-prop="email"
+                              ></telui-checkbox-list>
+          </div>
+          <div class="w-6  w-omega w-v-4">
+              <div class="w-12">
+                {{checkboxlistValue}}
+              </div>
+          </div>
+        </div>
+        <div class="w-12 w-alpha w-omega">
+            <div ui-view></div>
+        </div>
+    </div>
+</div>
