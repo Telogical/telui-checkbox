@@ -19,7 +19,9 @@ angular
                     false :
                     scope.clearable;
                 
-
+                
+                scope.value = scope.value || []; //must be a list.
+              
                 function render( /*newValue, oldValue*/ ) {
 
                     $el.removeAttr('disabled');
@@ -44,7 +46,7 @@ angular
                         text: scope.text,
                         disabled: scope.disabled,
                         click: scope.click,
-                        value: scope.value,
+                        value: scope.value, //the checkboxlist value is a list.
                         data: scope.data,
                         clearable: scope.clearable,
                         uiState: scope.state || 'default',

@@ -19,7 +19,11 @@ angular
         if (scope.value === 'false' || !scope.value) {
           scope.value = false;
         }
-
+        
+        //TODO: modify this to accept objects as well as boolean
+        // - selectedProp
+        // - labelProp
+        
         var model = {
           id: id,
           label: scope.label,

@@ -13,4 +13,5 @@ CheckboxDemo
     
         $scope.disabled = false;
         $scope.people = people;
+        $scope.singleCheckValue = true;
     });

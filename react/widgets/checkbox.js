@@ -1,9 +1,9 @@
 function Checkbox(ui) {
   'use strict';
-  
-      var React = ui.Core.React,
+
+  var React = ui.Core.React,
     _ = ui.Core._;
-  
+
   return React.createClass({
     displayName: 'Checkbox',
     mixins: [ui.Mixins.Widget],
@@ -16,22 +16,43 @@ function Checkbox(ui) {
       }
     },
     __onChange: function (value, list) {
-      //TODO: handle list situations
-      //for al ist we push the value into a list, for the checkbox we toggle.
-      //if (!list.props.disabled && list && value) {}
 
-      if (this.props.disabled) {
+      var model = this.props;
+
+      if (model.disabled) {
         return;
       }
 
-      var model = this;
-      model.props.scope.$apply(function (scope) {
+      function handleCheckbox() {
+        function toggleCheckbox(scope) {
 
-        if (typeof value === 'boolean') {
-          scope.value = !value;
+          var valIsBool = typeof value === 'boolean';
+          if (valIsBool) {
+            scope.value = !value;
+          }
+
+          if (!valIsBool && typeof value.selected === 'boolean') {
+            scope.value.selected = !scope.value.selected;
+          }
         }
 
-      });
+        if (model.scope) {
+          model.scope.$apply(toggleCheckbox);
+        }
+      }
+
+      function handleCheckboxList() {
+        if (!list.props.disabled && list && value) {
+          list.__onChange(value);
+        }
+      }
+
+      if (list && list.props.data) {
+        handleCheckboxList();
+      } else {
+        handleCheckbox();
+      }
+
     },
     getInitialState: function getInitialState() {
       return {
@@ -53,17 +74,28 @@ function Checkbox(ui) {
 
       this.props.appearance = this.props.appearance || 'checkbox';
 
-      var id = this.props.id,
-        key = this.props.key || this.props.id,
-        value = this.props.value,
-        list = this.props.list,
-        name = this.props.name,
-        disabled = !!this.props.disabled,
-        iconPrimary = this.props.iconPrimary,
-        iconSecondary = this.props.iconSecondary;
+      var model = this.props,
+        id = model.id,
+        key = model.key || model.id,
+        value = model.value,
+        list = model.list,
+        name = model.name,
+        disabled = !!model.disabled,
+        iconPrimary = model.iconPrimary,
+        iconSecondary = model.iconSecondary;
 
-      //will need to be modified to handle lists
-      var active = value;
+      // This will need to eb extended when
+      // the component handles objected more properly
+      var active = false;
+
+      if (typeof value === 'boolean') {
+        active = value;
+      }
+
+      if (typeof value === 'object' && value !== null) {
+        active = value[model.selectedProp] || false;
+      }
+
 
       var checkboxLiClasses = {
           'ui-widget': true,
