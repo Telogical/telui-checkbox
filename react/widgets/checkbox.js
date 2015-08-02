@@ -45,6 +45,8 @@ function Checkbox(ui) {
         if (!list.props.disabled && list && value) {
           list.__onChange(value);
         }
+        
+        
       }
 
       if (list && list.props.data) {

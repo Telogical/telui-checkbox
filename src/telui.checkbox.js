@@ -35,7 +35,6 @@ angular
           disabled: scope.disabled,
           click: scope.click,
           value: scope.value,
-          data: scope.data,
           name: scope.name,
           appearance: scope.appearance || 'checkbox',
           uiState: scope.state || '',
@@ -49,7 +48,7 @@ angular
 
       scope
         .$watchCollection(
-          '[value, data, label, iconPrimary, iconSecondary, disabled, cssClass, text, click, appearance, state]',
+          '[value, label, iconPrimary, iconSecondary, disabled, cssClass, text, click, appearance, state]',
           render
         );
     }

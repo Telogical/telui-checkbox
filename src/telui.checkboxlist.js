@@ -22,15 +22,13 @@ angular
                 
                 scope.value = scope.value || []; //must be a list.
               
-                function render( /*newValue, oldValue*/ ) {
-
+                function render( /*newValue, oldValue*/) {
                     $el.removeAttr('disabled');
 
                     var model = {
                         //scopes
                         scope: scope,
                         
-
                         //attrs
                         id: id,
                         label: scope.label,
@@ -53,7 +51,9 @@ angular
                         maxHeight: scope.maxHeight || 'auto',
                         
                     };
-
+                    
+                    console.log('rendering component');
+                  
                     React.renderComponent(UI.CheckboxList(model), $el[0]);
                 }
 

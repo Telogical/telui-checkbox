@@ -22,12 +22,18 @@
                <span>{{singleCheckValue}}</span>
             </div>
         </div>
-
+        <div class="w-12 w-alpha w-omega">
+          <telui-text
+                      label="The label for the checkboxlist"
+                      value="exampleLabel">
+          </telui-text>
+        </div>
         <div class="w-12 w-alpha w-omega">
           <div class="w-6 w-alpha w-v-4" style="max-height: 500px; overflow: auto">
               <telui-checkbox-list
                               data="people"
-                              label="People Selector Checkboxlist"
+                              disabled="singleCheckValue"
+                              label="{{exampleLabel}}"
                               value="checkboxlistValue"
                               label-primary="input list"
                               label-secondary="output list"

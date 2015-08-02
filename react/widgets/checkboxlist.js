@@ -62,16 +62,34 @@ function CheckboxList(ui) {
     },
 
     __onChange: function onChangeCheckboxList(value) {
+      //the toggle function here can very likely
+      // be reused
+
+      var widget = this;
       var model = this.props;
-      
-      console.log(model.data.length, model.value)
-      
-      if(model.disabled){
-        return
+
+      if (model.disabled) {
+        return;
       }
-      
+
       function updateValue(scope) {
-        scope.value.push(value);
+
+        function valueToIndexOfSelectedItem(listValue) {
+          return widget.__equals(value, listValue);
+        }
+
+        function toggleSelectedItem(itemIndex) {
+          if (itemIndex !== -1) {
+            scope.value.splice(itemIndex, 1);
+            value.selected = false;
+          } else {
+            scope.value.push(value.value);
+            value.selected = true;
+          }
+        }
+
+        var existingItemIndex = _.findIndex(scope.value, valueToIndexOfSelectedItem);
+        toggleSelectedItem(existingItemIndex);
       }
 
       model.scope.$apply(updateValue);
@@ -140,21 +158,19 @@ function CheckboxList(ui) {
 
         return ui.Checkbox(model);
       }
-
-
+      
+      // this can be sped up, if you break
+      // once you have found every item
       function isInSelectionModel(datum, model) {
         var data = model.data,
           value = model.value;
 
-
-
-        if (value && value.length) {
-
-          console.log('check checkedness =>', datum, value, data);
+        function valueToIndexOfSelectedItem(listValue) {
+          return list.__equals(datum, listValue);
         }
 
-
-        return false;
+        var existingItemIndex = _.findIndex(value, valueToIndexOfSelectedItem);
+        return !!(existingItemIndex !== -1);
       }
 
       //note: very similar to a function in the combobox
@@ -192,9 +208,6 @@ function CheckboxList(ui) {
         className: cx(ulClasses)
           //onFocus: this.__onFocus.bind(null, list.props.value, list),
       };
-
-
-      console.log('rendering', checkList.length, model.value.length);
 
       return domx.ul(ulAttrs, checkList);
     }
