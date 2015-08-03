@@ -86,7 +86,7 @@ function CheckboxList(ui) {
             value.selected = true;
             scope.value.push(value.value);
           }
-          
+
           widget.forceUpdate();
         }
 
@@ -98,7 +98,7 @@ function CheckboxList(ui) {
     },
 
     render: function render() {
- 
+
       var list = this;
 
       var cx = React.addons.classSet,
@@ -159,7 +159,7 @@ function CheckboxList(ui) {
 
         return ui.Checkbox(model);
       }
-      
+
       // this can be sped up, if you break
       // once you have found every item
       function isInSelectionModel(datum, model) {
@@ -189,19 +189,29 @@ function CheckboxList(ui) {
         return selectListModel;
       }
 
-      var checkList = _
+      var checkListItems = _
         .chain(model.data)
         .map(datumToSelectListItem)
         .map(listItemToCheck)
         .value();
 
 
+      var frameClasses = {
+        'w-12 w-alpha w-omega': true,
+        'ui-list-check-frame': true,
+        'ui-widget-vertical': (orientation === 'vertical'),
+        'ui-widget-horizontal': (orientation === 'horizontal')
+      }
+
+      var frameAttrs = {
+        key: key,
+        className: cx(frameClasses)
+      }
+
       //build component
       var ulClasses = {
         'w-12 w-alpha w-omega': true,
         'ui-list-check': true,
-        'ui-widget-vertical': (orientation === 'vertical'),
-        'ui-widget-horizontal': (orientation === 'horizontal')
       };
 
       var ulAttrs = {
@@ -210,7 +220,29 @@ function CheckboxList(ui) {
           //onFocus: this.__onFocus.bind(null, list.props.value, list),
       };
 
-      return domx.ul(ulAttrs, checkList);
+      var contents = [];
+
+      var checklist = domx.ul(ulAttrs, checkListItems);
+
+
+      if (model.text) {
+        
+        console.log(model.label)
+        
+        var labelModel = {
+          key: key + '_label',
+          uiState: model.uiState,
+          text: true,
+          label: model.label,
+          appearance: 'label'
+        }
+
+        contents.push(ui.Label(labelModel))
+      }
+
+      contents.push(checklist);
+
+      return domx.div(frameAttrs, contents);
     }
   });
 }
