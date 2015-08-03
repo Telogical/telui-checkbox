@@ -34,7 +34,7 @@ angular
                         label: scope.label,
                         iconPrimary: scope.iconPrimary,
                         iconSecondary: scope.iconSecondary,
-                        
+                        appearance: scope.appearance || 'checkbox',
                         labelPrimary: scope.labelPrimary,
                         labelSecondary: scope.labelSecondary,
                         
@@ -51,14 +51,12 @@ angular
                         maxHeight: scope.maxHeight || 'auto',
                         
                     };
-                    
-                    console.log('rendering component');
-                  
+
                     React.renderComponent(UI.CheckboxList(model), $el[0]);
                 }
 
                 scope.$watchCollection(
-                    '[value, data, label, labelProp,iconPrimary, iconSecondary, disabled, cssClass, text, click, state, maxHeight]',
+                    '[value, data, label, labelProp,iconPrimary, iconSecondary, disabled, cssClass, text, click, state, maxHeight, appearance]',
                     render);
             }
 
@@ -76,7 +74,8 @@ angular
                 state: '@',
                 clearable: '=?',
                 maxHeight: '@',
-                labelProp: '@'
+                labelProp: '@',
+                appearance: '@'
             };
 
             return {

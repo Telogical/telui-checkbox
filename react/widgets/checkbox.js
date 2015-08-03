@@ -16,6 +16,7 @@ function Checkbox(ui) {
       }
     },
     __onChange: function (value, list) {
+      var widget = this;
 
       var model = this.props;
 
@@ -26,16 +27,16 @@ function Checkbox(ui) {
       function handleCheckbox() {
         function toggleCheckbox(scope) {
 
-          var valIsBool = typeof value === 'boolean';
+          var valIsBool = (typeof value === 'boolean'),
+              valIsObj = (typeof value === 'object') && (value !== null);
+
           if (valIsBool) {
             scope.value = !value;
-          }
-
-          if (!valIsBool && typeof value.selected === 'boolean') {
-            scope.value.selected = !scope.value.selected;
+          } else if (valIsObj) {
+            scope.value.selected = !value.selected;
           }
         }
-
+        
         if (model.scope) {
           model.scope.$apply(toggleCheckbox);
         }
@@ -43,18 +44,17 @@ function Checkbox(ui) {
 
       function handleCheckboxList() {
         if (!list.props.disabled && list && value) {
-          list.__onChange(value);
+          list.__onChange(value, model);
         }
-        
-        
       }
 
       if (list && list.props.data) {
         handleCheckboxList();
+
       } else {
         handleCheckbox();
       }
-
+      
     },
     getInitialState: function getInitialState() {
       return {
@@ -66,7 +66,6 @@ function Checkbox(ui) {
       };
     },
     render: function render() {
-
       //not sure why the baseclass isnt doing this, yet.
       if (this.props.text === false) {
         this.props.label = '';

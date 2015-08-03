@@ -61,7 +61,7 @@ function CheckboxList(ui) {
 
     },
 
-    __onChange: function onChangeCheckboxList(value) {
+    __onChange: function onChangeCheckboxList(value, checkbox) {
       //the toggle function here can very likely
       // be reused
 
@@ -80,12 +80,14 @@ function CheckboxList(ui) {
 
         function toggleSelectedItem(itemIndex) {
           if (itemIndex !== -1) {
-            scope.value.splice(itemIndex, 1);
             value.selected = false;
+            scope.value.splice(itemIndex, 1);
           } else {
-            scope.value.push(value.value);
             value.selected = true;
+            scope.value.push(value.value);
           }
+          
+          widget.forceUpdate();
         }
 
         var existingItemIndex = _.findIndex(scope.value, valueToIndexOfSelectedItem);
@@ -96,7 +98,7 @@ function CheckboxList(ui) {
     },
 
     render: function render() {
-
+ 
       var list = this;
 
       var cx = React.addons.classSet,
@@ -146,8 +148,7 @@ function CheckboxList(ui) {
           iconSecondary: listItem[list.props.iconSecondaryProp] || list.props.iconSecondary,
           text: list.props.text,
           value: listItem,
-          selected: listItem.selected,
-          selectedProp: 'selected',
+          selectedProp: 'selected', //allow this to be overidden
           list: list,
           listValue: list.props.value,
           appearance: list.props.appearance,
