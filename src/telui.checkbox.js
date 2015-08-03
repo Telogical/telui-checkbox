@@ -19,7 +19,11 @@ angular
         if (scope.value === 'false' || !scope.value) {
           scope.value = false;
         }
-
+        
+        //TODO: modify this to accept objects as well as boolean
+        // - selectedProp
+        // - labelProp
+        
         var model = {
           id: id,
           label: scope.label,
@@ -31,7 +35,6 @@ angular
           disabled: scope.disabled,
           click: scope.click,
           value: scope.value,
-          data: scope.data,
           name: scope.name,
           appearance: scope.appearance || 'checkbox',
           uiState: scope.state || '',
@@ -45,7 +48,7 @@ angular
 
       scope
         .$watchCollection(
-          '[value, data, label, iconPrimary, iconSecondary, disabled, cssClass, text, click, appearance, state]',
+          '[value, label, iconPrimary, iconSecondary, disabled, cssClass, text, click, appearance, state]',
           render
         );
     }

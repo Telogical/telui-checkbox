@@ -49,7 +49,7 @@ function AppearanceCheckbox(ui) {
           'ui-appearance-checkbox-label': true,
           'ui-state-default': true,
           'ui-state-disabled': this.props.disabled
-        }, 
+        },
         labelAttrs = {
           key: key + '_label',
           id: key + '_label',
@@ -71,7 +71,7 @@ function AppearanceCheckbox(ui) {
           'ui-state-hover': control.state.hover,
           'ui-state-active': active,
           'ui-appearance-checkbox-sprite': true,
-          'ui-state-disabled': this.props.disabled    
+          'ui-state-disabled': this.props.disabled
         },
         checkboxSpriteAttrs = {
           className: cx(checkboxSpriteClasses),
