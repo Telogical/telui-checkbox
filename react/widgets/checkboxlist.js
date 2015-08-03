@@ -150,7 +150,7 @@ function CheckboxList(ui) {
           value: listItem,
           selectedProp: 'selected', //allow this to be overidden
           list: list,
-          listValue: list.props.value,
+          listValue: (list.props.value === false) ? false : true,
           appearance: list.props.appearance,
           orientation: list.props.orientation,
           index: index,
