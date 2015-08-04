@@ -25,14 +25,13 @@
         <div class="w-12 w-alpha w-omega">
           <div class="w-6 w-alpha w-v-4" style="max-height: 500px; overflow: auto">
               <telui-checkbox-list
+                              disabled="singleCheckValue"     
                               data="people"
                               label="Basic Checkbox List"
                               value="checkboxlistValue"
-                              label-primary="input list"
-                              label-secondary="output list"
                               text = "true"
-                              label-prop="<%= name.last %>, <%= name.first %>"
-                              appearance="menuitem"
+                              label-prop="<%= name.last %>, <%= email %>"
+                              appearance="checkbox"
                               ></telui-checkbox-list>
           </div>
           <div class="w-6  w-omega w-v-4">

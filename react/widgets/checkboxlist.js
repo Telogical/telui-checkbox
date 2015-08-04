@@ -225,19 +225,16 @@ function CheckboxList(ui) {
       var checklist = domx.ul(ulAttrs, checkListItems);
 
 
-      if (model.text) {
-        
-        console.log(model.label)
-        
+      if (model.text !== false && model.label) {
         var labelModel = {
           key: key + '_label',
           uiState: model.uiState,
           text: true,
           label: model.label,
           appearance: 'label'
-        }
+        };
 
-        contents.push(ui.Label(labelModel))
+        contents.push(ui.Label(labelModel));
       }
 
       contents.push(checklist);
